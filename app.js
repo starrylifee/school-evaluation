@@ -299,27 +299,29 @@
           kpiTitle.style.fontWeight = "500";
           kpiRow.appendChild(kpiTitle);
 
-          const targetsDiv = document.createElement("div");
-          targetsDiv.className = "targets";
+          // 고정 열: 학생/학부모/교원/직원 순서로 그리기, 없으면 placeholder
           for (const cat of categories) {
-            if (!targets.has(cat)) continue;
-            const id = keyOf(area, sub, kpi, cat);
-            const chip = document.createElement("label");
-            chip.className = "chip";
-            const cb = document.createElement("input");
-            cb.type = "checkbox";
-            cb.checked = state.selectedTargets.has(id);
-            cb.addEventListener("change", () => {
-              if (cb.checked) state.selectedTargets.add(id); else state.selectedTargets.delete(id);
-              saveLocal();
-            });
-            chip.appendChild(cb);
-            const span = document.createElement("span");
-            span.textContent = cat.replace("용", "");
-            chip.appendChild(span);
-            targetsDiv.appendChild(chip);
+            const cell = document.createElement(targets.has(cat) ? "label" : "div");
+            if (targets.has(cat)) {
+              cell.className = "chip";
+              const id = keyOf(area, sub, kpi, cat);
+              const cb = document.createElement("input");
+              cb.type = "checkbox";
+              cb.checked = state.selectedTargets.has(id);
+              cb.addEventListener("change", () => {
+                if (cb.checked) state.selectedTargets.add(id); else state.selectedTargets.delete(id);
+                saveLocal();
+              });
+              cell.appendChild(cb);
+              const span = document.createElement("span");
+              span.textContent = cat.replace("용", "");
+              cell.appendChild(span);
+            } else {
+              cell.className = "placeholder";
+              cell.textContent = "-";
+            }
+            kpiRow.appendChild(cell);
           }
-          kpiRow.appendChild(targetsDiv);
           sectionDiv.appendChild(kpiRow);
         }
         if (sectionDiv.children.length > 1) { // 타이틀 + 1개 이상 KPI

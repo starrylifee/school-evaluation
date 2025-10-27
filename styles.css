@@ -95,10 +95,12 @@ input[type="search"] {
 .tree summary { list-style: none; cursor: pointer; padding: 12px 12px; font-weight: 600; background: var(--elev); border-bottom: 1px solid var(--border); }
 .tree summary::-webkit-details-marker { display: none; }
 .tree .section { padding: 8px 12px; border-bottom: 1px dashed var(--border); }
-.tree .kpi { padding: 8px 12px; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
-.kpi .targets { display: flex; gap: 10px; flex-wrap: wrap; }
+.tree .kpi { padding: 8px 12px; display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 10px; align-items: center; }
+.kpi .targets { display: contents; }
 .chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: #1b1e2b; border: 1px solid var(--border); color: var(--muted); font-size: 12px; }
 .chip input { accent-color: var(--primary); }
+.
+.placeholder { height: 32px; display: flex; align-items: center; justify-content: center; color: var(--muted); opacity: .35; border: 1px dashed transparent; border-radius: 999px; }
 
 /* Tabs */
 .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
