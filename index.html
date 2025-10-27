@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>학교평가 설문지 생성기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container">
+      <h1>학교평가 설문지 생성기</h1>
+      <p class="subtitle">영역/세부영역/평가지표별 설문대상 선택 → 문항 선택 → 미리보기·TXT 다운로드</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stepper" aria-label="진행 단계">
+      <div class="step" data-step="1">
+        <div class="circle">1</div>
+        <div class="label">대상 선택</div>
+      </div>
+      <div class="bar"></div>
+      <div class="step" data-step="2">
+        <div class="circle">2</div>
+        <div class="label">문항 선택</div>
+      </div>
+      <div class="bar"></div>
+      <div class="step" data-step="3">
+        <div class="circle">3</div>
+        <div class="label">미리보기 · 다운로드</div>
+      </div>
+    </section>
+
+    <section id="step-1" class="step-pane" aria-labelledby="step1-title">
+      <h2 id="step1-title" class="visually-hidden">1단계: 영역/세부영역/평가지표별 설문대상 선택</h2>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">1단계 · 설문대상 선택</div>
+          <div class="actions">
+            <input type="search" id="filter-input" placeholder="영역/세부영역/평가지표 검색" aria-label="검색" />
+            <button id="expand-all" class="text-btn" type="button">전체 펼치기</button>
+            <button id="collapse-all" class="text-btn" type="button">전체 접기</button>
+          </div>
+        </div>
+        <div id="tree-container" class="card-body">
+          <!-- 동적으로 렌더링 -->
+        </div>
+      </div>
+      <div class="nav-row">
+        <div></div>
+        <button id="to-step-2" class="btn primary" type="button">다음 (문항 선택)</button>
+      </div>
+    </section>
+
+    <section id="step-2" class="step-pane" hidden aria-labelledby="step2-title">
+      <h2 id="step2-title" class="visually-hidden">2단계: 문항 선택</h2>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">2단계 · 문항 선택</div>
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" data-cat="학생용" aria-selected="true">학생문항</button>
+            <button class="tab" role="tab" data-cat="학부모용" aria-selected="false">학부모문항</button>
+            <button class="tab" role="tab" data-cat="교원용" aria-selected="false">교원문항</button>
+            <button class="tab" role="tab" data-cat="직원용" aria-selected="false">직원문항</button>
+          </div>
+        </div>
+        <div id="questions-container" class="card-body">
+          <!-- 동적으로 렌더링 -->
+        </div>
+      </div>
+      <div class="nav-row">
+        <button id="back-to-1" class="btn" type="button">이전</button>
+        <div class="nav-right">
+          <button id="next-category" class="btn" type="button">다음 대상 탭</button>
+          <button id="to-step-3" class="btn primary" type="button">다음 (미리보기)</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="step-3" class="step-pane" hidden aria-labelledby="step3-title">
+      <h2 id="step3-title" class="visually-hidden">3단계: 미리보기 및 TXT 다운로드</h2>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">3단계 · 미리보기</div>
+          <div class="actions">
+            <button id="download-txt" class="btn primary" type="button">TXT 다운로드</button>
+          </div>
+        </div>
+        <div id="preview-container" class="card-body">
+          <!-- 동적으로 렌더링 -->
+        </div>
+      </div>
+      <div class="nav-row">
+        <button id="back-to-2" class="btn" type="button">이전</button>
+        <div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <small>© 2025 학교평가 설문지 생성기</small>
+    </div>
+  </footer>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
+
+
